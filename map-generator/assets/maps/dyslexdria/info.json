@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../info.schema.json",
   "id": "Dyslexdria",
   "name": "Dyslexdria",
   "translation_key": "map.dyslexdria",
@@ -403,7 +404,6 @@
       "name": "Biosphere Conmune"
     }
   ],
-
   "additionalNations": [
     {
       "name": "Angolala",

@@ -1,10 +1,17 @@
 {
+  "$schema": "../../../info.schema.json",
   "name": "China",
   "id": "China",
   "translation_key": "map.china",
   "categories": ["countries", "asia"],
   "multiplayer_frequency": 8,
-  "layers": [{ "id": "label", "placement": "water", "nukeable": false }],
+  "layers": [
+    {
+      "id": "label",
+      "placement": "water",
+      "nukeable": false
+    }
+  ],
   "nations": [
     {
       "coordinates": [1737, 1732],

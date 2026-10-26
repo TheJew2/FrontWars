@@ -60,6 +60,6 @@
       "name": "Flanders"
     }
   ],
-  "themes": ["Europe"],
+  "themes": ["europe"],
   "translation_key": "map.benelux"
 }

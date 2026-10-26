@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../info.schema.json",
   "id": "BrainRot",
   "name": "Brain Rot",
   "translation_key": "map.brainrot",
@@ -6,7 +7,6 @@
   "multiplayer_frequency": 19,
   "team_frequency": 13,
   "special_team_count": 27,
-
   "nations": [
     {
       "coordinates": [760, 760],
@@ -24,7 +24,6 @@
       "coordinates": [1100, 1070],
       "name": "Brocas Motor Speech Area"
     },
-
     {
       "coordinates": [800, 620],
       "name": "Concentration"
@@ -49,7 +48,6 @@
       "coordinates": [1130, 530],
       "name": "Inhibition"
     },
-
     {
       "coordinates": [990, 490],
       "name": "Superior Frontal Gyrus"
@@ -58,7 +56,6 @@
       "coordinates": [370, 590],
       "name": "Frontal Eye Field"
     },
-
     {
       "coordinates": [1250, 470],
       "name": "Eye Movement"
@@ -67,7 +64,6 @@
       "coordinates": [1410, 430],
       "name": "Orientation"
     },
-
     {
       "coordinates": [1090, 820],
       "name": "Inferior Frontal Gyrus"
@@ -76,7 +72,6 @@
       "coordinates": [1280, 980],
       "name": "Speech Muscles"
     },
-
     {
       "coordinates": [1540, 550],
       "name": "Precentral Gyrus"
@@ -85,7 +80,6 @@
       "coordinates": [1440, 720],
       "name": "Voluntary Muscle"
     },
-
     {
       "coordinates": [1690, 660],
       "name": "Postcentral Gyrus"
@@ -98,7 +92,6 @@
       "coordinates": [1740, 540],
       "name": "Skin Sensation"
     },
-
     {
       "coordinates": [1920, 580],
       "name": "Superior Parietal Lobule"
@@ -107,7 +100,6 @@
       "coordinates": [1830, 500],
       "name": "Weight & Texture"
     },
-
     {
       "coordinates": [2140, 790],
       "name": "Parietal Lobule"
@@ -128,7 +120,6 @@
       "coordinates": [2000, 1230],
       "name": "Perception"
     },
-
     {
       "coordinates": [1740, 960],
       "name": "Wernicke Area"
@@ -145,7 +136,6 @@
       "coordinates": [1960, 1070],
       "name": "Language"
     },
-
     {
       "coordinates": [1480, 1060],
       "name": "Superior Temporal Gyrus"
@@ -154,7 +144,6 @@
       "coordinates": [1690, 980],
       "name": "Hearing"
     },
-
     {
       "coordinates": [1450, 1220],
       "name": "Middle Temporal Gyrus"
@@ -175,7 +164,6 @@
       "coordinates": [1380, 1380],
       "name": "Emotion"
     },
-
     {
       "coordinates": [1860, 1480],
       "name": "Cerebellum"
@@ -193,7 +181,6 @@
       "name": "Brain Stem"
     }
   ],
-
   "layers": [
     {
       "id": "brland",
