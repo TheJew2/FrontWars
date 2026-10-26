@@ -1177,4 +1177,14 @@ describe("UsernameInput held bare name", () => {
     expect(window.location.hash).toBe("");
     expect(el.isVerified()).toBe(false);
   });
+
+  it("removes userMeResponse listener on disconnect", async () => {
+    const el = await mount();
+    const removeSpy = vi.spyOn(document, "removeEventListener");
+    el.remove();
+    expect(removeSpy).toHaveBeenCalledWith(
+      "userMeResponse",
+      expect.any(Function),
+    );
+  });
 });
