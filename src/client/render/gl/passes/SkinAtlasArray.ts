@@ -66,8 +66,7 @@ export class SkinAtlasArray {
     img.crossOrigin = "anonymous";
     img.onload = () => {
       if (this.disposed) return;
-      this.uploadImage(img, layer);
-      this.onLayerReady(url, layer);
+      if (this.uploadImage(img, layer)) this.onLayerReady(url, layer);
     };
     img.onerror = () => {
       console.warn("Skin image failed to load:", url);
@@ -80,13 +79,13 @@ export class SkinAtlasArray {
    * keep native size if smaller. The shader samples cell-center as the spawn
    * anchor (UV 0.5), so centering keeps the image aligned with the spawn tile.
    */
-  private uploadImage(img: HTMLImageElement, layer: number): void {
-    if (!this.canvas) {
+  private uploadImage(img: HTMLImageElement, layer: number): boolean {
+    if (!this.ctx) {
       this.canvas = document.createElement("canvas");
       this.canvas.width = this.canvas.height = SKIN_DIM;
       this.ctx = this.canvas.getContext("2d", { willReadFrequently: false });
+      if (!this.ctx) return ((this.canvas = null), false);
     }
-    if (!this.ctx || !this.canvas) return;
     this.ctx.clearRect(0, 0, SKIN_DIM, SKIN_DIM);
     const scale = Math.min(
       1,
@@ -112,9 +111,10 @@ export class SkinAtlasArray {
       1,
       gl.RGBA,
       gl.UNSIGNED_BYTE,
-      this.canvas,
+      this.canvas!,
     );
     gl.generateMipmap(gl.TEXTURE_2D_ARRAY);
+    return true;
   }
 
   private makeTex(w: number, h: number, layerCount: number): WebGLTexture {

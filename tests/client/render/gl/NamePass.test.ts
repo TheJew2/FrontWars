@@ -38,18 +38,16 @@ describe("SkinAtlasArray", () => {
       { createTexture: () => ({}), texSubImage3D: sub },
       { get: (t: any, k: string) => t[k] ?? (() => {}) },
     );
-    const canvases: HTMLCanvasElement[] = [];
+    let canvasCount = 0;
     const orig = document.createElement.bind(document);
     vi.spyOn(document, "createElement").mockImplementation((t) => {
-      const el = orig(t);
-      if (t === "canvas") canvases.push(el as HTMLCanvasElement);
-      return el;
+      if (t === "canvas") canvasCount++;
+      return orig(t);
     });
     const atlas = new SkinAtlasArray(gl, [], () => {});
     const img = document.createElement("img");
-    (atlas as any).uploadImage(img, 0);
-    (atlas as any).uploadImage(img, 1);
-    expect(canvases).toHaveLength(1);
+    for (let i = 0; i < 2; i++) (atlas as any).uploadImage(img, i);
+    expect(canvasCount).toBe(1);
     expect(sub).toHaveBeenCalledTimes(2);
     atlas.dispose();
   });
