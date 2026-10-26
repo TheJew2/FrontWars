@@ -25,6 +25,8 @@ export class SkinAtlasArray {
   private layers = new Map<string, number>();
   private onLayerReady: (url: string, layer: number) => void;
   private disposed = false;
+  private canvas: HTMLCanvasElement | null = null;
+  private ctx: CanvasRenderingContext2D | null = null;
 
   /**
    * @param urls Unique skin URLs needed for this game. If empty, the atlas is
@@ -79,10 +81,13 @@ export class SkinAtlasArray {
    * anchor (UV 0.5), so centering keeps the image aligned with the spawn tile.
    */
   private uploadImage(img: HTMLImageElement, layer: number): void {
-    const canvas = document.createElement("canvas");
-    canvas.width = SKIN_DIM;
-    canvas.height = SKIN_DIM;
-    const ctx = canvas.getContext("2d", { willReadFrequently: false })!;
+    if (!this.canvas) {
+      this.canvas = document.createElement("canvas");
+      this.canvas.width = this.canvas.height = SKIN_DIM;
+      this.ctx = this.canvas.getContext("2d", { willReadFrequently: false });
+    }
+    if (!this.ctx || !this.canvas) return;
+    this.ctx.clearRect(0, 0, SKIN_DIM, SKIN_DIM);
     const scale = Math.min(
       1,
       SKIN_DIM / img.naturalWidth,
@@ -92,7 +97,7 @@ export class SkinAtlasArray {
     const drawH = (img.naturalHeight * scale) | 0;
     const offX = ((SKIN_DIM - drawW) / 2) | 0;
     const offY = ((SKIN_DIM - drawH) / 2) | 0;
-    ctx.drawImage(img, offX, offY, drawW, drawH);
+    this.ctx.drawImage(img, offX, offY, drawW, drawH);
 
     const gl = this.gl;
     gl.bindTexture(gl.TEXTURE_2D_ARRAY, this.tex);
@@ -107,7 +112,7 @@ export class SkinAtlasArray {
       1,
       gl.RGBA,
       gl.UNSIGNED_BYTE,
-      canvas,
+      this.canvas,
     );
     gl.generateMipmap(gl.TEXTURE_2D_ARRAY);
   }
@@ -139,6 +144,7 @@ export class SkinAtlasArray {
     this.disposed = true;
     this.gl.deleteTexture(this.tex);
     this.layers.clear();
+    this.canvas = this.ctx = null;
   }
 }
 
