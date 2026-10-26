@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../info.schema.json",
   "id": "Ommatrypta",
   "name": "Ommatrypta",
   "translation_key": "map.ommatrypta",
@@ -110,7 +111,6 @@
       "name": "Balling"
     }
   ],
-
   "layers": [
     {
       "id": "eyeland",
